@@ -3,7 +3,7 @@ services:
   appseed-app:
     container_name: appseed_app
     restart: always
-    build: .
+    build: django-pixel-master
     networks:
       - db_network
       - web_network
