@@ -3,7 +3,9 @@ services:
   appseed-app:
     container_name: appseed_app
     restart: always
-    build: django-pixel-master
+    build: .
+    ports:
+      - "8000:5085"
     networks:
       - db_network
       - web_network
