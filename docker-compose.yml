@@ -1,9 +1,11 @@
-version: '3.8'
+version: '3.9'
 services:
-  appseed-app:
-    container_name: appseed_app
+  amwinterhalter-site:
+    container_name: amwinterhalter_site
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:5085"
     networks:
@@ -19,8 +21,8 @@ services:
       - ./nginx:/etc/nginx/conf.d
     networks:
       - web_network
-    depends_on: 
-      - appseed-app
+    depends_on:
+      - amwinterhalter-site
 networks:
   db_network:
     driver: bridge
