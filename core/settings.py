@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    'theme_pixel',
     "home",
 ]
 
@@ -153,7 +152,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/home/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #if not DEBUG:
