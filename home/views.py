@@ -17,8 +17,8 @@ def abouts_us(request):
 def contact_us(request):
   return render(request, 'pages/contact.html')
 
-def landing_freelancer(request):
-  return render(request, 'pages/landing-freelancer.html')
+def does_not_compute_game(request):
+  return render(request, 'https://drive.google.com/file/d/18mzTS-Sq_v2sTcbZgnCegLSx3zzkicuC/view?usp=sharing')
 
 def blank_page(request):
   return render(request, 'pages/blank.html')

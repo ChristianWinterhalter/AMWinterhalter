@@ -2,11 +2,11 @@
 
 <header class="header-global">
 
-    {% if request.path == "/landing-freelancer/" or request.path == "/blank/" %}
-    <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light navbar-theme-secondary">
-    {% else %}
+<!--    {% if request.path == "/landing-freelancer/" or request.path == "/blank/" %}-->
+<!--    <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light navbar-theme-secondary">-->
+<!--    {% else %}-->
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark navbar-theme-secondary">
-    {% endif %}  
+<!--    {% endif %}  -->
       <div class="container position-relative">
           <a class="navbar-brand me-lg-5" href="/">
               <img class="navbar-brand-dark" src="{% static 'assets/img/brand/light.svg' %}" alt="Logo light">
@@ -37,6 +37,9 @@
                                   <h6 class="d-block mb-3 text-primary">Main pages</h6>
                                   <ul class="list-style-none mb-4">
                                       <li class="mb-2 megamenu-item">
+                                          <a class="megamenu-link" href="{% url 'about_us' %}">Striders Card Shop</a>
+                                      </li>
+                                      <li class="mb-2 megamenu-item">
                                           <a class="megamenu-link" href="{% url 'about_us' %}">About</a>
                                       </li>
                                       <li class="mb-2 megamenu-item">
@@ -45,10 +48,16 @@
                                   </ul>
                               </div>
                               <div class="col-6 col-lg-4">
-                                  <h6 class="d-block mb-3 text-primary">Landings</h6>
+                                  <h6 class="d-block mb-3 text-primary">Projects</h6>
                                   <ul class="list-style-none mb-4">
                                       <li class="mb-2 megamenu-item">
-                                          <a class="megamenu-link" href="{% url 'landing_freelancer' %}">Freelancer</a>
+                                          <a class="megamenu-link" href="{% url 'does_not_compute_game' %}">Does Not Compute - 3d Puzzle Platformer Game</a>
+                                      </li>
+                                      <li class="mb-2 megamenu-item">
+                                          <a class="megamenu-link" href="{% url 'does_not_compute_game' %}">Honda Dealership Site</a>
+                                      </li>
+                                      <li class="mb-2 megamenu-item">
+                                          <a class="megamenu-link" href="{% url 'does_not_compute_game' %}">Github pages Jank site</a>
                                       </li>
                                   </ul>
                               </div>
@@ -150,10 +159,10 @@
                 <a href="{% url 'login' %}"
                     class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Sign IN</a>            
             {% endif %}
-              <a target="_blank" href="https://appseed.us/product/pixel-bootstrap/django/" class="btn btn-tertiary"><i class="fas fa-cloud-download-alt me-2"></i> Download</a>
-              <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
+<!--              <a target="_blank" href="https://appseed.us/product/pixel-bootstrap/django/" class="btn btn-tertiary"><i class="fas fa-cloud-download-alt me-2"></i> Download</a>-->
+<!--              <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                  <span class="navbar-toggler-icon"></span>-->
+<!--              </button>-->
           </div>
       </div>
   </nav>
