@@ -1,31 +1,59 @@
-version: '3.9'
 services:
+  db:
+    image: "postgis/postgis:13-3.3-alpine"
+    restart: always
+    container_name: striders-tcg-shop
+    environment:
+      DB_ENGINE: postgresql
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_HOST: localhost
+      DB_PORT: 5432
+      POSTGRES_DB: tcg-db
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+    volumes:
+      - tcgdata:/var/lib/postgresql/data
+
   amwinterhalter-site:
     container_name: amwinterhalter_site
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@db:5432/tcg-db
     ports:
-      - "80:5085"
+      - "127.0.0.1:8000:5085"
     networks:
-      - db_network
       - web_network
+
   nginx:
     container_name: nginx
     restart: always
     image: "nginx:latest"
     ports:
-      - "5085:5085"
+      - "127.0.0.1:5085:5085"
     volumes:
       - ./nginx:/etc/nginx/conf.d
     networks:
       - web_network
     depends_on:
       - amwinterhalter-site
+
+volumes:
+  tcgdata:
 networks:
-  db_network:
-    driver: bridge
   web_network:
     driver: bridge
  
