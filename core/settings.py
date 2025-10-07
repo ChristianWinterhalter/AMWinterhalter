@@ -20,6 +20,8 @@ load_dotenv()  # take environment variables from .env.
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', 'G:/Development/AMWinterhalter/media')
+MEDIA_URL = '/media/'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -32,11 +34,12 @@ if not SECRET_KEY:
 DEBUG = str2bool(os.environ.get('DEBUG'))
 #print(' DEBUG -> ' + str(DEBUG) ) 
 
-# Docker HOST
-ALLOWED_HOSTS = ['*']
+# Set hosts to allow any app on Railway and the local testing URL
+ALLOWED_HOSTS = [ '127.0.0.1', 'localhost']
 
 # Add here your deployment HOSTS
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://localhost:5432',
+                        'http://127.0.0.1:8000', 'http://127.0.0.1:5085', 'http://127.0.0.1:5432']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:    
@@ -51,7 +54,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "home",
 ]
 
@@ -92,13 +94,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DB_ENGINE   = os.getenv('DB_ENGINE'   , None)
-DB_USERNAME = os.getenv('DB_USERNAME' , None)
-DB_PASS     = os.getenv('DB_PASS'     , None)
-DB_HOST     = os.getenv('DB_HOST'     , None)
-DB_PORT     = os.getenv('DB_PORT'     , None)
-DB_NAME     = os.getenv('DB_NAME'     , None)
-
+DB_ENGINE   = os.getenv('DB_ENGINE', 'sqlite3')
+DB_USERNAME = os.getenv('POSTGRES_USER', 'user')
+DB_PASS     = os.getenv('POSTGRES_PASSWORD', 'password')
+DB_HOST     = os.getenv('DB_HOST', 'localhost')
+DB_PORT     = os.getenv('DB_PORT', '5432')
+DB_NAME     = os.getenv('POSTGRES_DB', 'db1')
+print(f"DB_PASS loaded as: {DB_PASS}")  # Debug line
 if DB_ENGINE and DB_NAME and DB_USERNAME:
     DATABASES = { 
       'default': {
